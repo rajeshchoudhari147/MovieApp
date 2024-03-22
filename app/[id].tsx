@@ -1,6 +1,6 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Image } from 'react-native';
 import React from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMovie } from '@/api/movies';
 
@@ -26,7 +26,19 @@ export default function MovieDetails() {
 
   return (
     <View>
-      <Text style={{ fontSize: 24, fontWeight: '500' }}>{movie.title}</Text>
+      <Stack.Screen options={{ title: movie.title }} />
+      <Image
+        source={{
+          uri: 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path,
+        }}
+        style={{ width: '100%', height: 300 }}
+      />
+      <View style={{ padding: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: '500', marginVertical: 20 }}>
+          {movie.title}
+        </Text>
+        <Text style={{ fontSize: 16 }}>{movie.overview}</Text>
+      </View>
     </View>
   );
 }
