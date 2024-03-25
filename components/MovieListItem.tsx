@@ -2,7 +2,12 @@ import { View, Text, Image, Pressable } from 'react-native';
 import React from 'react';
 import { Link } from 'expo-router';
 
-export default function MovieListItem({ movie }) {
+interface Movie {
+  id: string;
+  poster_path: string;
+}
+
+export default function MovieListItem({ movie }: { movie: Movie }) {
   return (
     <Link href={`/${movie.id}`} asChild>
       <Pressable style={{ flex: 1 }}>
